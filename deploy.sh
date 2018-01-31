@@ -14,5 +14,5 @@ aws cloudformation package \
 aws cloudformation deploy \
   --template-file target/packaged-template.yml \
   --capabilities CAPABILITY_IAM \
-  --stack-name gemini-app-integration \
+  --stack-name ${STACK_NAME} \
   --parameter-overrides KmsKeyId=${KMS_KEY_ID}
