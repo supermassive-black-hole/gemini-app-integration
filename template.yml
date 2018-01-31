@@ -1,0 +1,76 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  KmsKeyId:
+    Type: String
+
+Globals:
+  Function:
+    Runtime: python3.6
+    Timeout: 30
+
+Resources:
+  HomeLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: home.main
+      CodeUri: src/home.py
+      Policies:
+      - Version: '2012-10-17'
+        Statement:
+        - Sid: ssm
+          Effect: Allow
+          Action:
+          - ssm:GetParameter
+          Resource:
+          - !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/gemini-app-integration/*"
+        - Sid: kms
+          Effect: Allow
+          Action:
+          - kms:Decrypt
+          Resource:
+          - !Sub "arn:aws:kms:${AWS::Region}:${AWS::AccountId}:key/${KmsKeyId}"
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
+  IFrameLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: iframe_proxy.main
+      CodeUri: src/iframe_proxy.py
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /iframe
+            Method: get
+  ResultLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/result.py
+      Handler: result.main
+      Policies:
+      - Version: '2012-10-17'
+        Statement:
+        - Sid: ssm
+          Effect: Allow
+          Action:
+          - ssm:GetParameter
+          Resource:
+          - !Sub "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/gemini-app-integration/*"
+        - Sid: kms
+          Effect: Allow
+          Action:
+          - kms:Decrypt
+          Resource:
+          - !Sub "arn:aws:kms:${AWS::Region}:${AWS::AccountId}:key/${KmsKeyId}"
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /result
+            Method: post
