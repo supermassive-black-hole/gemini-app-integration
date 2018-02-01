@@ -1,7 +1,7 @@
 # Integration Example for the Gemini App
 
-This code is a fully deployable demo application integrating the face/id matchineg [gemini application|https://www.gemini-app.ai].
-It is programmed with the [AWS Serverless Application Model|https://www.aws.com]. To use it, follow these 10 steps.
+This code is a fully deployable demo application integrating the face/id matchineg [gemini application](https://www.gemini-app.ai).
+It is programmed with the [AWS Serverless Application Model](https://github.com/awslabs/serverless-application-model). To use it, follow these 10 steps.
 
 1. Log into your Gemini profile and copy the API Key.
 2. Log In your AWS account or create one if necessary.
@@ -17,5 +17,5 @@ S3_BUCKET_NAME=<s3_bucket> S3_PREFIX=gemini-app-integration/code KMS_KEY_ID=<id_
 ```
 8. In 'Services → API Gateway', choose the api you just created with the command above, it is called `gemini-app-integration` like the stack you created
    in step 7.
-9. Under 'Stages', choose the `Prod` stage and follow the URL.
+9. Under 'Stages', choose the `Prod` stage and follow the URL to test the gemini application.
 10. To delete the installed application, go to 'Services → Cloudformation'
