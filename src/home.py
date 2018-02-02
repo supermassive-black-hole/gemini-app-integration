@@ -24,7 +24,7 @@ def main(event, context):
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
 </head>
 <body>
-  <form action="/result" method="post">
+  <form action="/Prod/result" method="post">
   <script src="https://api.gemini-app.ai/static-assets/gemini.js" type="text/javascript" class="gemini-button" data-api-token="{0}" data-iframe-path="{1}"></script>
 </form>
 </body>
