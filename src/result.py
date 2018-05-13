@@ -13,7 +13,7 @@ def main(event, context):
 
     check = {}
     if request_id:
-        request = req.Request('https://api.gemini-app.ai/server-info/request-info/{0}'.format(request_id[0]),
+        request = req.Request('https://info.v2.api.gemini-app.ai/requests/{0}'.format(request_id[0]),
                               headers={'X-Api-Key': X_API_KEY})
         with req.urlopen(request) as f:
             check = json.loads(f.read())

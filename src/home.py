@@ -7,7 +7,7 @@ X_API_KEY = ssm.get_parameter(Name='/gemini-app-integration/api-key', WithDecryp
 
 
 def main(event, context):
-    request = req.Request(url='https://api.gemini-app.ai/server-compute/token', method='POST',
+    request = req.Request(url='https://token.v2.api.gemini-app.ai/token', method='POST',
                           headers={'X-Api-Key': X_API_KEY})
     with req.urlopen(request) as f:
         token = json.loads(f.read())['token']
