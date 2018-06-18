@@ -49,7 +49,7 @@ def main(event, context):
     </tbody>
 </table>
 <p>
-<a href="/">New Match</a>
+<a href="/Prod">New Match</a>
 </p>
 </body>
 </html>
