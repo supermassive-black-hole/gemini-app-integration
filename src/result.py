@@ -53,6 +53,6 @@ def main(event, context):
 </p>
 </body>
 </html>
-""".format(request_id, params['result'][0], check.get('algorithm_version'), check.get('match_status'),
+""".format(request_id, params['match_status'][0], check.get('algorithm_version'), check.get('match_status'),
            check.get('probability'), check.get('confidence'))
     }
